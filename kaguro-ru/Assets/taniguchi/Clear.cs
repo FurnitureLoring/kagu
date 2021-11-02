@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Clear : MonoBehaviour
 {
     GameObject Furniture;
+    bool result;
 
     void Start()
     {
@@ -15,10 +16,18 @@ public class Clear : MonoBehaviour
 
     void Update()
     {
+        if (Furniture != null)
+        {
+            result = Furniture.GetComponent<Furniture>().result;
+        }
         //‰Æ‹ï‚ªnull‚¾‚Á‚½‚çClearScene‚ÉˆÚ“®
-        if(Furniture==null)
+        if (Furniture == null && result == false)
         {
             SceneManager.LoadScene("Clear");
+        }
+        if (Furniture == null && result == true)
+        {
+            SceneManager.LoadScene("GameOver");
         }
     }
 }
