@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private Vector3 pos;
-    Rigidbody rigidbody; 
-    GameObject furniture;//家具
+    private Vector3 pos;//位置座標
+    Rigidbody rigidbody;
+    GameObject furniture;//家具情報の格納変数
     private float distance;//距離
-    private float time_interval;//
 
     //テスト用
     public float Speed = 2.0f;//移動スピード

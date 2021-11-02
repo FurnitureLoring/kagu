@@ -7,9 +7,11 @@ using UnityEngine.SceneManagement;
 public class Furniture : MonoBehaviour
 {
     GameObject Player;
+    GameObject Goal;
     public Transform goal;
     private NavMeshAgent agent;
     Rigidbody rigidbody;
+    Clear clear;
     Player script;
     private float Gauge;
     public bool result;
@@ -24,6 +26,9 @@ public class Furniture : MonoBehaviour
         Player = GameObject.Find("Player");
         script = Player.GetComponent<Player>();
         rigidbody = this.GetComponent<Rigidbody>();
+
+        Goal = GameObject.Find("Goal");
+        clear = Goal.GetComponent<Clear>();
 
         agent = GetComponent<NavMeshAgent>();
         agent.destination = goal.position;
@@ -40,7 +45,7 @@ public class Furniture : MonoBehaviour
         //•ßŠlƒQ[ƒW‚ªÝ’è‚³‚ê‚½’l‚ð’´‚¦‚é‚ÆŽ©g‚ðíœ
         if (Gauge > Gauge_MAX)
         {
-            result = false;
+            clear.result = false;
             Destroy(this.gameObject);
         }
     }
@@ -49,7 +54,7 @@ public class Furniture : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Goal"))
         {
-            result = true;
+            clear.result = true;
             Destroy(this.gameObject);
         }
     }
