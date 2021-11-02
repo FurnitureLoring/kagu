@@ -508,9 +508,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed41788f20b4ff5428f53b360a155871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distance: 0
+  gauge: 0
   Speed: 2
-  gauge_test: 0
-  distance_test: 1.5
 --- !u!54 &298223327
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1452,8 +1452,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goal: {fileID: 194909651}
-  result: 0
-  Speed: 1
+  Speed: 2
 --- !u!195 &2100853459
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1464,7 +1463,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 0.3
+  m_Speed: 0.4
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
