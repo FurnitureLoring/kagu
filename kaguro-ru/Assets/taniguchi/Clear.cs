@@ -5,29 +5,29 @@ using UnityEngine.SceneManagement;
 
 public class Clear : MonoBehaviour
 {
-    GameObject Furniture;
-    bool result;
+    GameObject furniture;   //家具情報の格納変数
+    public bool result;     //リザルトフラグ    false:クリア   true:ゲームオーバー
 
     void Start()
     {
         //家具の情報を取得
-        Furniture = GameObject.Find("furniture");
+        furniture = GameObject.Find("furniture");
     }
 
     void Update()
     {
-        if (Furniture != null)
+        //家具がnullなら動作
+        if (furniture == null)
         {
-            result = Furniture.GetComponent<Furniture>().result;
-        }
-        //家具がnullだったらClearSceneに移動
-        if (Furniture == null && result == false)
-        {
-            SceneManager.LoadScene("Clear");
-        }
-        if (Furniture == null && result == true)
-        {
-            SceneManager.LoadScene("GameOver");
+            //resultがfalseならクリアに、trueならゲームオーバーに移動
+            if (result == false)
+            {
+                SceneManager.LoadScene("Clear");
+            }
+            if (result == true)
+            {
+                SceneManager.LoadScene("GameOver");
+            }
         }
     }
 }

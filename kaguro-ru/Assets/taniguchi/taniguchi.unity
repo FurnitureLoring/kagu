@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 194909650}
   - component: {fileID: 194909653}
   - component: {fileID: 194909652}
+  - component: {fileID: 194909654}
   m_Layer: 0
   m_Name: Goal
   m_TagString: Goal
@@ -207,6 +208,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &194909654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194909649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fed1dc60e19531f46af52e0a045a69b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  result: 0
 --- !u!1 &209967633
 GameObject:
   m_ObjectHideFlags: 0
@@ -619,7 +633,6 @@ GameObject:
   - component: {fileID: 900549417}
   - component: {fileID: 900549416}
   - component: {fileID: 900549415}
-  - component: {fileID: 900549418}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -675,18 +688,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &900549418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 900549414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fed1dc60e19531f46af52e0a045a69b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1031498237
 GameObject:
   m_ObjectHideFlags: 0
@@ -793,7 +794,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 0
-  m_Extents: {x: 0.7, y: 0.5, z: 0.7}
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
