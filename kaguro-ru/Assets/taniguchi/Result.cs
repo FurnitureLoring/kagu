@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Clear : MonoBehaviour
+public class Result : MonoBehaviour
 {
     GameObject furniture;   //家具情報の格納変数
     public bool result;     //リザルトフラグ    false:クリア   true:ゲームオーバー
