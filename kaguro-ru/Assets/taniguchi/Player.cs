@@ -7,7 +7,9 @@ public class Player : MonoBehaviour
     Rigidbody rigidbody;
     GameObject furniture;           //家具情報の格納変数
     GameObject pitfall;             //落とし穴情報の格納変数
+    GameObject Goal;                //ゴール情報の格納変数
     Pitfall pitfall_s;              //落とし穴スクリプト情報の格納変数
+    Result result_s;                //リザルトスクリプトの情報格納変数
     public float distance;          //距離
     float possible_distance = 1.5f; //捕獲可能距離
     public float gauge = 0;         //捕獲ゲージ
@@ -15,15 +17,20 @@ public class Player : MonoBehaviour
     //テスト用
     public float Speed = 2.0f;//移動スピード
     public float pitfall_time = 0;//落とし穴滞在時間
-    public int x = 0;//落とし穴に落ちていく時間
+    public float x = 0;//落とし穴に落ちていく時間
 
     void Start()
     {
-        //家具のオブジェクトを探して取得
+        //家具のオブジェクトを取得
         furniture = GameObject.Find("Furniture");
-        //落とし穴のオブジェクトを探して取得・落とし穴スクリプトの情報を取得
+        
+        //落とし穴のオブジェクトを取得・落とし穴スクリプトの情報を取得
         pitfall = GameObject.Find("Pitfall");
         pitfall_s = pitfall.GetComponent<Pitfall>();
+        
+        //ゴールの情報を取得・リザルトスクリプトの情報を取得
+        Goal = GameObject.Find("Goal");
+        result_s = Goal.GetComponent<Result>();
 
         rigidbody = this.GetComponent<Rigidbody>();
     }
@@ -37,15 +44,17 @@ public class Player : MonoBehaviour
             //今のところテストで3秒以上落とし穴の上にいると落ちる
             if(pitfall_time >= 2.0f)
             {
-                //while (true)
-                //{
-                //    transform.position += new Vector3(0, x, 0);
-                //    x++;
-                //    if (x > 5)
-                //    {
-                //        Destroy(this.gameObject);
-                //    }
-                //}
+                while (true)
+                {
+                    transform.position += new Vector3(0, -x, 0);
+                    x += Time.deltaTime;
+                    if (x > 0.1f)
+                    {
+                        break;
+                    }
+                }
+                result_s.result = true;
+                Destroy(this.gameObject);
             }
         }
 
