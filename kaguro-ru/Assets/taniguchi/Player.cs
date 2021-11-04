@@ -14,14 +14,14 @@ public class Player : MonoBehaviour
 
     //テスト用
     public float Speed = 2.0f;//移動スピード
-    public float pitfall_time = 0;
+    public float pitfall_time = 0;//落とし穴滞在時間
 
     void Start()
     {
         //家具のオブジェクトを探して取得
-        furniture = GameObject.Find("furniture");
+        furniture = GameObject.Find("Furniture");
         //落とし穴のオブジェクトを探して取得・落とし穴スクリプトの情報を取得
-        pitfall = GameObject.Find("pitfall");
+        pitfall = GameObject.Find("Pitfall");
         pitfall_s = pitfall.GetComponent<Pitfall>();
 
         rigidbody = this.GetComponent<Rigidbody>();
@@ -33,8 +33,8 @@ public class Player : MonoBehaviour
         {
             pitfall_time = pitfall_s.pitfall_time;
 
-            //今のところテストで３秒以上落とし穴の上にいると落ちる
-            while(pitfall_time <= 3.0f)
+            //今のところテストで3秒以上落とし穴の上にいると落ちる
+            if(pitfall_time >= 3.0f)
             {
                 Destroy(this.gameObject);
             }
