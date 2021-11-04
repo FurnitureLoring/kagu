@@ -11,8 +11,8 @@ public class Furniture : MonoBehaviour
     public Transform goal;          //ナビゲーションシステムのゴール情報を格納
     private NavMeshAgent agent;     //ナビゲーションシステム
     Rigidbody rigidbody;
-    Result result;                  //リザルトスクリプトの情報格納変数
-    Player player;                  //プレイヤースクリプトの情報格納変数
+    Result result_s;                //リザルトスクリプトの情報格納変数
+    Player player_s;                //プレイヤースクリプトの情報格納変数
     private float Gauge;            //捕獲ゲージ
     private float Gauge_MAX = 10;   //捕獲ゲージMAX
 
@@ -21,14 +21,15 @@ public class Furniture : MonoBehaviour
 
     void Start()
     {
-        //プレイヤーの情報を探して取得
+        //プレイヤーの情報を探して取得・プレイヤースクリプトの情報を取得
         Player = GameObject.Find("Player");
-        player = Player.GetComponent<Player>();
-        rigidbody = this.GetComponent<Rigidbody>();
+        player_s = Player.GetComponent<Player>();
 
-        //ゴールの情報を探して取得
+        //ゴールの情報を探して取得・リザルトスクリプトの情報を取得
         Goal = GameObject.Find("Goal");
-        result = Goal.GetComponent<Result>();
+        result_s = Goal.GetComponent<Result>();
+
+        rigidbody = this.GetComponent<Rigidbody>();
 
         //ナビゲーションシステム
         agent = GetComponent<NavMeshAgent>();
@@ -38,7 +39,7 @@ public class Furniture : MonoBehaviour
     void Update()
     {
         //プレイヤーから捕獲ゲージを取得
-        Gauge = player.gauge;
+        Gauge = player_s.gauge;
 
         //前方に移動
         this.rigidbody.velocity = new Vector3(0, 0, 1f);
@@ -46,7 +47,7 @@ public class Furniture : MonoBehaviour
         //捕獲ゲージが設定された値を超えるとresultをfalseにして自身を削除
         if (Gauge > Gauge_MAX)
         {
-            result.result = false;
+            result_s.result = false;
             Destroy(this.gameObject);
         }
     }
@@ -56,7 +57,7 @@ public class Furniture : MonoBehaviour
         //Goalタグのオブジェクトに衝突したらresultをtrueにして自身を削除
         if (other.gameObject.CompareTag("Goal"))
         {
-            result.result = true;
+            result_s.result = true;
             Destroy(this.gameObject);
         }
     }

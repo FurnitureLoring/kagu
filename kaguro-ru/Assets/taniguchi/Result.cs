@@ -11,7 +11,7 @@ public class Result : MonoBehaviour
     void Start()
     {
         //‰Æ‹ï‚Ìî•ñ‚ğæ“¾
-        furniture = GameObject.Find("furniture");
+        furniture = GameObject.Find("Furniture");
     }
 
     void Update()
