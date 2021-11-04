@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     //テスト用
     public float Speed = 2.0f;//移動スピード
     public float pitfall_time = 0;//落とし穴滞在時間
+    public int x = 0;//落とし穴に落ちていく時間
 
     void Start()
     {
@@ -34,9 +35,17 @@ public class Player : MonoBehaviour
             pitfall_time = pitfall_s.pitfall_time;
 
             //今のところテストで3秒以上落とし穴の上にいると落ちる
-            if(pitfall_time >= 3.0f)
+            if(pitfall_time >= 2.0f)
             {
-                Destroy(this.gameObject);
+                //while (true)
+                //{
+                //    transform.position += new Vector3(0, x, 0);
+                //    x++;
+                //    if (x > 5)
+                //    {
+                //        Destroy(this.gameObject);
+                //    }
+                //}
             }
         }
 
