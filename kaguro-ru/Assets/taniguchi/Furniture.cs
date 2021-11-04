@@ -21,11 +21,11 @@ public class Furniture : MonoBehaviour
 
     void Start()
     {
-        //プレイヤーの情報を探して取得・プレイヤースクリプトの情報を取得
+        //プレイヤーの情報を取得・プレイヤースクリプトの情報を取得
         Player = GameObject.Find("Player");
         player_s = Player.GetComponent<Player>();
 
-        //ゴールの情報を探して取得・リザルトスクリプトの情報を取得
+        //ゴールの情報を取得・リザルトスクリプトの情報を取得
         Goal = GameObject.Find("Goal");
         result_s = Goal.GetComponent<Result>();
 
