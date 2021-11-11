@@ -16,22 +16,4 @@ public class Pitfall : MonoBehaviour
     {
         
     }
-
-    //落とし穴に滞在している時間が長くなると落ちる
-    void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            pitfall_time += Time.deltaTime;
-        }
-    }
-
-    //落とし穴の範囲の外に出ると滞在時間がリセットされる
-    void OnTriggerExit(Collider ohter)
-    {
-        if (ohter.gameObject.CompareTag("Player"))
-        {
-            pitfall_time = 0;
-        }
-    }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Furniture : MonoBehaviour
 {
@@ -15,9 +16,11 @@ public class Furniture : MonoBehaviour
     Player player_s;                //プレイヤースクリプトの情報格納変数
     private float Gauge;            //捕獲ゲージ
     private float Gauge_MAX = 10;   //捕獲ゲージMAX
+    float Speed = 3.0f;             //移動スピード
+    public Slider slider;           //sliderを入れる
 
     //テスト用
-    public float Speed = 2.0f;//移動スピード
+
 
     void Start()
     {
@@ -34,6 +37,9 @@ public class Furniture : MonoBehaviour
         //ナビゲーションシステム
         agent = GetComponent<NavMeshAgent>();
         agent.destination = goal.position;
+
+        //スライダーの捕獲ゲージを0にする
+        slider.value = 0;
     }
 
     void Update()
@@ -41,8 +47,11 @@ public class Furniture : MonoBehaviour
         //プレイヤーから捕獲ゲージを取得
         Gauge = player_s.gauge;
 
+        //スライダーに現在の捕獲ゲージを入れる
+        slider.value = Gauge / Gauge_MAX;
+
         //前方に移動
-        this.rigidbody.velocity = new Vector3(0, 0, 1f);
+        this.rigidbody.velocity = new Vector3(0, 0, Speed);
 
         //捕獲ゲージが設定された値を超えるとresultをfalseにして自身を削除
         if (Gauge > Gauge_MAX)
