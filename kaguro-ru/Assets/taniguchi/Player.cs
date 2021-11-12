@@ -56,7 +56,11 @@ public class Player : MonoBehaviour
 
             //‘O•û‚ÉˆÚ“®
             //‹——£‚ª—£‚ê‚Ä‚¢‚ê‚Î‘¬“x‚ª‘¬‚­‚È‚èA‹ß‚¯‚ê‚Î“¯‘¬‚É‚È‚é
-            if (distance < possible_distance)
+            if (Input.GetKey(KeyCode.S))
+            {
+                transform.position = transform.position;
+            }
+            else if (distance < possible_distance)
             {
                 this.rigidbody.velocity = new Vector3(0, 0, CaptureSpeed);
             }
