@@ -25,19 +25,19 @@ public class SceneTransition : MonoBehaviour
     }
 
     //ステージ2に移動
-    public void StageSelect2()
+    public void StageStart2()
     {
         SceneManager.LoadScene("Stage2");
     }
 
     //ステージ3に移動
-    public void StageSelect3()
+    public void StageStart3()
     {
         SceneManager.LoadScene("Stage3");
     }
 
     //ステージ4に移動
-    public void StageSelect4()
+    public void StageStart4()
     {
         SceneManager.LoadScene("Stage4");
     }

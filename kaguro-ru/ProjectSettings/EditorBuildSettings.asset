@@ -9,9 +9,15 @@ EditorBuildSettings:
     path: Assets/taniguchi/taniguchi.unity
     guid: 2bf7bd054434f3f47aa17305f725dca8
   - enabled: 1
-    path: Assets/taniguchi/Clear.unity
+    path: Assets/Main/Scenes/Clear.unity
     guid: 14b30e5443427a44db251ea68279c0d8
   - enabled: 1
-    path: Assets/taniguchi/GameOver.unity
+    path: Assets/Main/Scenes/GameOver.unity
     guid: 84397e9cc4e85134593e8b003b0a580e
+  - enabled: 1
+    path: Assets/Main/Scenes/Title.unity
+    guid: a9d80e731904cbe4e8f7c1d16ef2f865
+  - enabled: 1
+    path: Assets/Main/Scenes/StageSelect.unity
+    guid: dc2ac3d4ca5166643b3af315f3cd0cc8
   m_configObjects: {}
