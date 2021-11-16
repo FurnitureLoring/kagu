@@ -5,6 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransition : MonoBehaviour
 {
+    GameObject StageName;
+    StageName StageName_s;
+    private string Stage;
+
+    void Start()
+    {
+        //StageName = GameObject.Find("StageName");
+        //StageName_s = StageName.GetComponent<StageName>();
+        //Stage = StageName_s.Stage;
+    }
 
     //ステージセレクト画面に移動
     public void StageSelect()
@@ -41,5 +51,25 @@ public class SceneTransition : MonoBehaviour
     {
         SceneManager.LoadScene("Stage4");
     }
+
+    //リトライ機能
+    //public void Retry()
+    //{
+    //    switch (Stage)
+    //    {
+    //        case "Stage1":
+    //            SceneManager.LoadScene("Stage1");
+    //            break;
+    //        case "Stage2":
+    //            SceneManager.LoadScene("Stage2");
+    //            break;
+    //        case "Stage3":
+    //            SceneManager.LoadScene("Stage3");
+    //            break;
+    //        case "Stage4":
+    //            SceneManager.LoadScene("Stage4");
+    //            break;
+    //    }
+    //}
 
 }
