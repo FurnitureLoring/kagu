@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4331268223502654850}
   - component: {fileID: 4331268223502654851}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Player_test
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,7 +111,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distance: 0
   gauge: 0
-  pitfall_time: 0
 --- !u!54 &4331268223502654851
 Rigidbody:
   m_ObjectHideFlags: 0

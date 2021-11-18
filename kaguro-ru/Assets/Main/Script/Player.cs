@@ -54,18 +54,20 @@ public class Player : MonoBehaviour
             //家具との距離を代入
             distance = Vector3.Distance(transform.position, furniture.transform.position);
 
-            //前方に移動
-            //距離が離れていれば速度が速くなり、近ければ同速になる
+            //その場に停止
             if (Input.GetKey(KeyCode.S))
             {
                 transform.position = transform.position;
             }
+            //前方に移動
+            //距離が離れていれば速度が速くなり、近ければ同速になる
             else if (distance < possible_distance)
             {
                 this.rigidbody.velocity = new Vector3(0, 0, CaptureSpeed);
             }
             else
             {
+                Debug.Log(Speed);
                 this.rigidbody.velocity = new Vector3(0, 0, Speed);
             }
 

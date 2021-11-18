@@ -39,7 +39,7 @@ public class Furniture : MonoBehaviour
         agent.destination = goal.position;
 
         //スライダーの捕獲ゲージを0にする
-        slider.value = 0;
+        //slider.value = 0;
     }
 
     void Update()
@@ -48,7 +48,7 @@ public class Furniture : MonoBehaviour
         Gauge = player_s.gauge;
 
         //スライダーに現在の捕獲ゲージを入れる
-        slider.value = Gauge / Gauge_MAX;
+        //slider.value = Gauge / Gauge_MAX;
 
         //前方に移動
         this.rigidbody.velocity = new Vector3(0, 0, Speed);
