@@ -11,14 +11,18 @@ public class SceneTransition : MonoBehaviour
 
     void Start()
     {
-        //StageName = GameObject.Find("StageName");
-        //StageName_s = StageName.GetComponent<StageName>();
-        //Stage = StageName_s.Stage;
+        StageName = GameObject.Find("StageName");
+        if (StageName != null)
+        {
+            StageName_s = StageName.GetComponent<StageName>();
+            Stage = StageName_s.Stage;
+        }
     }
 
     //ステージセレクト画面に移動
     public void StageSelect()
     {
+        Destroy(StageName);
         SceneManager.LoadScene("StageSelect");
     }
 
@@ -53,23 +57,27 @@ public class SceneTransition : MonoBehaviour
     }
 
     //リトライ機能
-    //public void Retry()
-    //{
-    //    switch (Stage)
-    //    {
-    //        case "Stage1":
-    //            SceneManager.LoadScene("Stage1");
-    //            break;
-    //        case "Stage2":
-    //            SceneManager.LoadScene("Stage2");
-    //            break;
-    //        case "Stage3":
-    //            SceneManager.LoadScene("Stage3");
-    //            break;
-    //        case "Stage4":
-    //            SceneManager.LoadScene("Stage4");
-    //            break;
-    //    }
-    //}
+    public void Retry()
+    {
+        switch (Stage)
+        {
+            case "Stage1":
+                SceneManager.LoadScene("Stage1");
+                Destroy(StageName);
+                break;
+            case "Stage2":
+                SceneManager.LoadScene("Stage2");
+                Destroy(StageName);
+                break;
+            case "Stage3":
+                SceneManager.LoadScene("Stage3");
+                Destroy(StageName);
+                break;
+            case "Stage4":
+                SceneManager.LoadScene("Stage4");
+                Destroy(StageName);
+                break;
+        }
+    }
 
 }

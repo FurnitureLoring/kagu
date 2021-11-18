@@ -10,7 +10,7 @@ public class StageName : MonoBehaviour
 
     void Start()
     {
-        //DontDestroyOnLoad(this);
+        DontDestroyOnLoad(this);
     }
 
     void Update()
