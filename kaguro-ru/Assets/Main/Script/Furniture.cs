@@ -16,13 +16,15 @@ public class Furniture : MonoBehaviour
     Player player_s;                //プレイヤースクリプトの情報格納変数
     private float Gauge;            //捕獲ゲージ
     private float Gauge_MAX = 10;   //捕獲ゲージMAX
-    float Speed = 3.0f;             //移動スピード
+    float Speed = 2.5f;             //移動スピード
     public Slider slider;           //sliderを入れる
+    const int pathMax = 9;                      //パスの最大登録数
+    Vector3[] positions = new Vector3[pathMax]; //座標リスト
+    int position = 0;
 
     //テスト用
 
-
-    void Start()
+    IEnumerator Start()
     {
         //プレイヤーの情報を取得・プレイヤースクリプトの情報を取得
         Player = GameObject.Find("Player");
@@ -36,10 +38,12 @@ public class Furniture : MonoBehaviour
 
         //ナビゲーションシステム
         agent = GetComponent<NavMeshAgent>();
-        agent.destination = goal.position;
+        agent.SetDestination(goal.position);
+        yield return new WaitWhile(() => agent.pathStatus != NavMeshPathStatus.PathComplete);
+        agent.path.GetCornersNonAlloc(positions);
 
         //スライダーの捕獲ゲージを0にする
-        //slider.value = 0;
+        slider.value = 0;
     }
 
     void Update()
@@ -48,10 +52,15 @@ public class Furniture : MonoBehaviour
         Gauge = player_s.gauge;
 
         //スライダーに現在の捕獲ゲージを入れる
-        //slider.value = Gauge / Gauge_MAX;
+        slider.value = Gauge / Gauge_MAX;
 
-        //前方に移動
-        this.rigidbody.velocity = new Vector3(0, 0, Speed);
+        //障害物を避けながら前方に移動
+        var tragetPosition = positions[position];
+        if (Vector3.Distance(transform.position, tragetPosition) < 0.2f)
+        {
+            position = position + 1 < positions.Length ? position + 1 : position;
+        }
+        transform.localPosition = Vector3.MoveTowards(transform.position, tragetPosition, Speed * Time.deltaTime);
 
         //捕獲ゲージが設定された値を超えるとresultをfalseにして自身を削除
         if (Gauge > Gauge_MAX)

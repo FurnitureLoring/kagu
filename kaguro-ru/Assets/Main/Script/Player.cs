@@ -67,7 +67,6 @@ public class Player : MonoBehaviour
             }
             else
             {
-                Debug.Log(Speed);
                 this.rigidbody.velocity = new Vector3(0, 0, Speed);
             }
 
