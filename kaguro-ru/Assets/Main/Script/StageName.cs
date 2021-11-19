@@ -5,32 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class StageName : MonoBehaviour
 {
-    //StageName
-    public string Stage;
+    public string Stage;    //ステージ名を入れる変数
 
     void Start()
     {
+        //シーンを移動しても破壊されないようにする
         DontDestroyOnLoad(this);
-    }
-
-    void Update()
-    {
-        //現在のSceneを記憶
+        //Scene名を取得
         Stage = SceneManager.GetActiveScene().name;
-        switch (Stage)
-        {
-            case "Stage1":
-                Stage = "Stage1";
-                break;
-            case "Stage2":
-                Stage = "Stage2";
-                break;
-            case "Stage3":
-                Stage = "Stage3";
-                break;
-            case "Stage4":
-                Stage = "Stage4";
-                break;
-        }
+
     }
 }
