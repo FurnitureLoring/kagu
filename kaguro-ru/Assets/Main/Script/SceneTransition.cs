@@ -5,16 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransition : MonoBehaviour
 {
-    GameObject StageName;
-    StageName StageName_s;
-    private string Stage;
+    GameObject StageName;   //StageName情報の格納変数
+    StageName StageName_s;  //StageNameスクリプトの情報格納変数
+    private string Stage;   //ステージ名を入れる変数
 
     void Start()
     {
+        //StageNameオブジェクトの情報を取得
         StageName = GameObject.Find("StageName");
         if (StageName != null)
         {
+            //StageNameスクリプトの情報を取得
             StageName_s = StageName.GetComponent<StageName>();
+            //ステージ名を取得
             Stage = StageName_s.Stage;
         }
     }
@@ -61,21 +64,21 @@ public class SceneTransition : MonoBehaviour
     {
         switch (Stage)
         {
-            case "Stage1":
+            case "Stage1":  //ステージ１
                 SceneManager.LoadScene("Stage1");
-                Destroy(StageName);
+                Destroy(StageName); //オブジェクトを破棄
                 break;
-            case "Stage2":
+            case "Stage2":  //ステージ２
                 SceneManager.LoadScene("Stage2");
-                Destroy(StageName);
+                Destroy(StageName); //オブジェクトを破棄
                 break;
-            case "Stage3":
+            case "Stage3":  //ステージ３
                 SceneManager.LoadScene("Stage3");
-                Destroy(StageName);
+                Destroy(StageName); //オブジェクトを破棄
                 break;
-            case "Stage4":
+            case "Stage4":  //ステージ４
                 SceneManager.LoadScene("Stage4");
-                Destroy(StageName);
+                Destroy(StageName); //オブジェクトを破棄
                 break;
         }
     }

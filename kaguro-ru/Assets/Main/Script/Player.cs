@@ -14,8 +14,8 @@ public class Player : MonoBehaviour
     public float distance;          //距離
     float possible_distance = 1.5f; //捕獲可能距離
     public float gauge = 0;         //捕獲ゲージ
-    float Speed = 3.5f;//移動スピード
-    float CaptureSpeed = 3.0f;//捕獲可能距離内でのスピード
+    float Speed = 3.5f;             //移動スピード
+    float CaptureSpeed = 3.0f;      //捕獲可能距離内でのスピード
     
     //テスト用
 
@@ -83,13 +83,19 @@ public class Player : MonoBehaviour
         }
     }
 
-    //void OnTriggerEnter(Collider other)
-    //{
-    //    //Holeタグのオブジェクトに衝突したらresultをtrueにして自身を削除
-    //    if (other.gameObject.CompareTag("Hole"))
-    //    {
-    //        result_s.result = true;
-    //        //コンポーネントをOFFにするといけるかも
-    //    }
-    //}
+    void OnTriggerEnter(Collider other)
+    {
+        //Goalタグのオブジェクトに衝突したらresultをtrueにして自身を削除
+        if (other.gameObject.CompareTag("Goal"))
+        {
+            result_s.result = true;
+            Destroy(this.gameObject);
+        }
+        //    //Holeタグのオブジェクトに衝突したらresultをtrueにして自身を削除
+        //    if (other.gameObject.CompareTag("Hole"))
+        //    {
+        //        result_s.result = true;
+        //        //コンポーネントをOFFにするといけるかも
+        //    }
+    }
 }
