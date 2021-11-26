@@ -5,6 +5,7 @@ using UnityEngine;
 public class MoveObstacle : MonoBehaviour
 {
     private float time;//動き出すまでの時間間隔
+    private bool isMove;//動いているかを判別
 
     void Update()
     {
@@ -13,15 +14,19 @@ public class MoveObstacle : MonoBehaviour
 
         if (time <= 0)
         {
-            //コルーチン開始
-            StartCoroutine(Move());
-            
+            if (!isMove)
+            {
+                //フラグをtrueにする
+                isMove = true;
+                //コルーチンを動かす
+                StartCoroutine(Move());
+            }
             //再び動き出すまでの時間間隔を設定
             time = Random.Range(0.0f, 10.0f);
         }
     }
 
-    //横に移動してまた同じ位置に戻ってくる
+    //移動コルーチン
     IEnumerator Move()
     {
         for (int i = 0; i < 120; i++)
@@ -35,5 +40,7 @@ public class MoveObstacle : MonoBehaviour
             transform.Translate(-0.1f, 0, 0);
             yield return new WaitForSeconds(0.05f);
         }
+        //フラグをfalseにする
+        isMove = false;
     }
 }
