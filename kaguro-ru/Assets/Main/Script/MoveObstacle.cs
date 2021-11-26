@@ -4,31 +4,24 @@ using UnityEngine;
 
 public class MoveObstacle : MonoBehaviour
 {
-    private float time;
-    private float vecX;
-    private float vecZ;
-    private bool isUp;
-
-    void Start()
-    {
-    }
+    private float time;//動き出すまでの時間間隔
 
     void Update()
     {
+        //動くまでの時間間隔を減少
         time -= Time.deltaTime;
 
         if (time <= 0)
         {
-            if (!isUp)
-            {
-                isUp = true;
-                StartCoroutine(Move());
-            }
-            //publicで入力した値から取得する配列の要素を変える
+            //コルーチン開始
+            StartCoroutine(Move());
+            
+            //再び動き出すまでの時間間隔を設定
             time = Random.Range(0.0f, 10.0f);
         }
     }
 
+    //横に移動してまた同じ位置に戻ってくる
     IEnumerator Move()
     {
         for (int i = 0; i < 120; i++)
@@ -42,6 +35,5 @@ public class MoveObstacle : MonoBehaviour
             transform.Translate(-0.1f, 0, 0);
             yield return new WaitForSeconds(0.05f);
         }
-        isUp = false;
     }
 }
