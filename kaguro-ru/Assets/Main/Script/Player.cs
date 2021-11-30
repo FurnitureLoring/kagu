@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -16,9 +17,9 @@ public class Player : MonoBehaviour
     public float gauge = 0;         //捕獲ゲージ
     float Speed = 3.5f;             //移動スピード
     float CaptureSpeed = 3.0f;      //捕獲可能距離内でのスピード
-    
-    //テスト用
 
+    //テスト用
+    public bool hole;
 
     void Start()
     {
@@ -34,6 +35,8 @@ public class Player : MonoBehaviour
         result_s = Goal.GetComponent<Result>();
 
         rigidbody = this.GetComponent<Rigidbody>();
+
+        hole = false;
     }
 
     void Update()
@@ -49,7 +52,7 @@ public class Player : MonoBehaviour
             transform.position -= transform.right * Speed * Time.deltaTime;
         }
         //家具が存在するときに動作
-        if (furniture != null)
+        if (furniture != null && hole==false)
         {
             //家具との距離を代入
             distance = Vector3.Distance(transform.position, furniture.transform.position);
@@ -88,14 +91,20 @@ public class Player : MonoBehaviour
         //Goalタグのオブジェクトに衝突したらresultをtrueにして自身を削除
         if (other.gameObject.CompareTag("Goal"))
         {
-            result_s.result = true;
-            Destroy(this.gameObject);
+            SceneManager.LoadScene("GameOver");
         }
-        //    //Holeタグのオブジェクトに衝突したらresultをtrueにして自身を削除
-        //    if (other.gameObject.CompareTag("Hole"))
-        //    {
-        //        result_s.result = true;
-        //        //コンポーネントをOFFにするといけるかも
-        //    }
+        //Holeタグのオブジェクトに衝突したら地面の下に落ちる
+        if (other.gameObject.CompareTag("Hole"))
+        {
+            this.GetComponent<BoxCollider>().isTrigger = true;
+            hole = true;
+            StartCoroutine(Wait());
+        }
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(1.0f);
+        SceneManager.LoadScene("GameOver");
     }
 }
