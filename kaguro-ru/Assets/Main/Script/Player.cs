@@ -7,9 +7,7 @@ public class Player : MonoBehaviour
 {
     Rigidbody rigidbody;
     GameObject furniture;           //家具情報の格納変数
-    //GameObject pitfall;             //落とし穴情報の格納変数
     GameObject Goal;                //ゴール情報の格納変数
-    //Pitfall pitfall_s;              //落とし穴スクリプト情報の格納変数
     Result result_s;                //リザルトスクリプトの情報格納変数
 
     public float distance;          //距離
@@ -25,11 +23,7 @@ public class Player : MonoBehaviour
     {
         //家具のオブジェクトを取得
         furniture = GameObject.Find("Furniture");
-        
-        ////落とし穴のオブジェクトを取得・落とし穴スクリプトの情報を取得
-        //pitfall = GameObject.Find("Pitfall");
-        //pitfall_s = pitfall.GetComponent<Pitfall>();
-        
+               
         //ゴールの情報を取得・リザルトスクリプトの情報を取得
         Goal = GameObject.Find("Goal");
         result_s = Goal.GetComponent<Result>();
@@ -39,7 +33,7 @@ public class Player : MonoBehaviour
         hole = false;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         //右に移動
         if (Input.GetKey(KeyCode.D))

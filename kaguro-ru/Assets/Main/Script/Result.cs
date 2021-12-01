@@ -18,7 +18,7 @@ public class Result : MonoBehaviour
 
     }
 
-    void Update()
+    void FixedUpdate()
     {
         //‰Æ‹ï‚ªnull‚È‚ç“®ì
         if (furniture == null || Player == null)
