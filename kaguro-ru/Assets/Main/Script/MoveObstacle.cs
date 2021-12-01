@@ -7,7 +7,7 @@ public class MoveObstacle : MonoBehaviour
     private float time;//“®‚«o‚·‚Ü‚Å‚ÌŠÔŠÔŠu
     private bool isMove;//“®‚¢‚Ä‚¢‚é‚©‚ğ”»•Ê
 
-    void Update()
+    void FixedUpdate()
     {
         //“®‚­‚Ü‚Å‚ÌŠÔŠÔŠu‚ğŒ¸­
         time -= Time.deltaTime;
@@ -31,13 +31,13 @@ public class MoveObstacle : MonoBehaviour
     {
         for (int i = 0; i < 120; i++)
         {
-            transform.Translate(0.1f, 0, 0);
+            transform.Translate(0, 0, 0.1f);
             yield return new WaitForSeconds(0.05f);
         }
 
         for (int i = 0; i < 120; i++)
         {
-            transform.Translate(-0.1f, 0, 0);
+            transform.Translate(0, 0, -0.1f);
             yield return new WaitForSeconds(0.05f);
         }
         //ƒtƒ‰ƒO‚ğfalse‚É‚·‚é

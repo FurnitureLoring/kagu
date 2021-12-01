@@ -46,7 +46,7 @@ public class Furniture : MonoBehaviour
         slider.value = 0;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         //プレイヤーから捕獲ゲージを取得
         Gauge = player_s.gauge;
