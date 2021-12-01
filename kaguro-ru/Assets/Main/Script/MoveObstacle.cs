@@ -35,6 +35,8 @@ public class MoveObstacle : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
         }
 
+        //transform.Rotate(0, -180.0f, 0);
+
         for (int i = 0; i < 120; i++)
         {
             transform.Translate(0, 0, -0.1f);
