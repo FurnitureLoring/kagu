@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MoveObstacle : MonoBehaviour
 {
-    private float time;//動き出すまでの時間間隔
+    private float time; //動き出すまでの時間間隔
     private bool isMove;//動いているかを判別
 
     void FixedUpdate()
@@ -29,20 +29,24 @@ public class MoveObstacle : MonoBehaviour
     //移動コルーチン
     IEnumerator Move()
     {
-        for (int i = 0; i < 120; i++)
+        for (int i = 0; i < 200; i++)
         {
             transform.Translate(0, 0, 0.1f);
             yield return new WaitForSeconds(0.05f);
         }
 
-        //transform.Rotate(0, -180.0f, 0);
+        //180°回転
+        transform.Rotate(0, -180.0f, 0);
 
-        for (int i = 0; i < 120; i++)
+        for (int i = 0; i < 200; i++)
         {
-            transform.Translate(0, 0, -0.1f);
+            transform.Translate(0, 0, 0.1f);
             yield return new WaitForSeconds(0.05f);
         }
         //フラグをfalseにする
         isMove = false;
+
+        //180°回転
+        transform.Rotate(0, 180.0f, 0);
     }
 }
