@@ -11,7 +11,6 @@ public class Furniture : MonoBehaviour
     GameObject Goal;                //ゴール情報の格納変数
     public Transform goal;          //ナビゲーションシステムのゴール情報を格納
     private NavMeshAgent agent;     //ナビゲーションシステム
-    Rigidbody rigidbody;
     Result result_s;                //リザルトスクリプトの情報格納変数
     Player player_s;                //プレイヤースクリプトの情報格納変数
     private float Gauge;            //捕獲ゲージ
@@ -33,8 +32,6 @@ public class Furniture : MonoBehaviour
         //ゴールの情報を取得・リザルトスクリプトの情報を取得
         Goal = GameObject.Find("Goal");
         result_s = Goal.GetComponent<Result>();
-
-        rigidbody = this.GetComponent<Rigidbody>();
 
         //ナビゲーションシステム
         agent = GetComponent<NavMeshAgent>();
