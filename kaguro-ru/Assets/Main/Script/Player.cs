@@ -17,9 +17,6 @@ public class Player : MonoBehaviour
     bool hole;                      //落とし穴判別用
 
     //テスト用
-    public bool left;  //trueなら主人公が左に移動
-    public bool right; //trueなら主人公が右に移動
-
 
     void Start()
     {
@@ -31,10 +28,6 @@ public class Player : MonoBehaviour
         result_s = Goal.GetComponent<Result>();
 
         hole = false;
-
-
-        left = false;
-        right = false;
     }
 
     void FixedUpdate()
@@ -43,13 +36,11 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             transform.position += transform.right * Speed * Time.deltaTime;
-            right = true;
         }
         //左に移動
         if(Input.GetKey(KeyCode.A))
         {
             transform.position -= transform.right * Speed * Time.deltaTime;
-            left = true;
         }
         //家具が存在するときと、落とし穴の上にいないときに動作
         if (furniture != null && hole==false)
@@ -57,11 +48,13 @@ public class Player : MonoBehaviour
             //家具との距離を代入
             distance = Vector3.Distance(transform.position, furniture.transform.position);
 
+            //前向きになる
             transform.rotation = Quaternion.Euler(0, 0, 0);
 
             //その場に停止
-            if (Input.GetKey(KeyCode.S))
+            if (Input.GetKey(KeyCode.Space))
             {
+                //後ろ向きになる
                 transform.rotation = Quaternion.Euler(0, 180, 0);
 
                 transform.position = transform.position;
@@ -85,13 +78,6 @@ public class Player : MonoBehaviour
             {
                 transform.position += transform.forward * Speed * Time.deltaTime;
             }
-
-            ////距離が設定された値より近くて、
-            ////プレイヤーのZ座標が家具のZ座標より大きいときに、
-            ////spaceキーを入力すると捕獲ゲージを増やす
-            //if (Input.GetKey(KeyCode.Space))
-            //{
-            //}
         }
     }
 
