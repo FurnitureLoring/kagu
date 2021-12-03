@@ -5,19 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    Rigidbody rigidbody;
     GameObject furniture;           //家具情報の格納変数
     GameObject Goal;                //ゴール情報の格納変数
     Result result_s;                //リザルトスクリプトの情報格納変数
-
+    Animator Playeranimation;
     public float distance;          //距離
     float possible_distance = 1.5f; //捕獲可能距離
     public float gauge = 0;         //捕獲ゲージ
     float Speed = 3.5f;             //移動スピード
     float CaptureSpeed = 3.0f;      //捕獲可能距離内でのスピード
+    bool hole;                      //落とし穴判別用
 
     //テスト用
-    public bool hole;
 
     void Start()
     {
@@ -27,8 +26,6 @@ public class Player : MonoBehaviour
         //ゴールの情報を取得・リザルトスクリプトの情報を取得
         Goal = GameObject.Find("Goal");
         result_s = Goal.GetComponent<Result>();
-
-        rigidbody = this.GetComponent<Rigidbody>();
 
         hole = false;
     }
@@ -45,37 +42,41 @@ public class Player : MonoBehaviour
         {
             transform.position -= transform.right * Speed * Time.deltaTime;
         }
-        //家具が存在するときに動作
+        //家具が存在するときと、落とし穴の上にいないときに動作
         if (furniture != null && hole==false)
         {
             //家具との距離を代入
             distance = Vector3.Distance(transform.position, furniture.transform.position);
 
+            //前向きになる
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+
             //その場に停止
-            if (Input.GetKey(KeyCode.S))
+            if (Input.GetKey(KeyCode.Space))
             {
+                //後ろ向きになる
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+
                 transform.position = transform.position;
+
+                //距離が設定された値より近くて、
+                //プレイヤーのZ座標が家具のZ座標より大きいときに、
+                //捕獲ゲージを増やす
+                if (distance <= possible_distance && transform.position.z >= furniture.transform.position.z)
+                {
+                    //一秒ごとに+1される
+                    gauge += Time.deltaTime;
+                }
             }
             //前方に移動
             //距離が離れていれば速度が速くなり、近ければ同速になる
             else if (distance < possible_distance)
             {
-                this.rigidbody.velocity = new Vector3(0, 0, CaptureSpeed);
+                transform.position += transform.forward * CaptureSpeed * Time.deltaTime;
             }
             else
             {
-                this.rigidbody.velocity = new Vector3(0, 0, Speed);
-            }
-
-            //距離が設定された値より近いときに
-            //spaceキーを入力すると捕獲ゲージを増やす
-            if (Input.GetKey(KeyCode.Space))
-            {
-                if (distance <= possible_distance)
-                {
-                    //一秒ごとに+1される
-                    gauge += Time.deltaTime;
-                }
+                transform.position += transform.forward * Speed * Time.deltaTime;
             }
         }
     }
@@ -92,11 +93,12 @@ public class Player : MonoBehaviour
         {
             this.GetComponent<BoxCollider>().isTrigger = true;
             hole = true;
-            StartCoroutine(Wait());
+            StartCoroutine(GameOverWait());
         }
     }
 
-    IEnumerator Wait()
+    //GameOverシーンに移動するコルーチン
+    IEnumerator GameOverWait()
     {
         yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene("GameOver");
