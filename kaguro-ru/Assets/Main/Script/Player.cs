@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     GameObject furniture;           //家具情報の格納変数
     GameObject Goal;                //ゴール情報の格納変数
     Result result_s;                //リザルトスクリプトの情報格納変数
-    Animator Playeranimation;
+    Animation Playeranimation;      //アニメーションスクリプトの情報格納変数
     public float distance;          //距離
     float possible_distance = 1.5f; //捕獲可能距離
     public float gauge = 0;         //捕獲ゲージ
@@ -20,6 +20,9 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        //Animationスクリプトの情報を取得
+        Playeranimation = GetComponent<Animation>();
+
         //家具のオブジェクトを取得
         furniture = GameObject.Find("Furniture");
                
@@ -32,15 +35,22 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
+        //アニメーション初期化
+        Playeranimation.AnimStop();
+
         //右に移動
         if (Input.GetKey(KeyCode.D))
         {
             transform.position += transform.right * Speed * Time.deltaTime;
+            //アニメーションさせる
+            Playeranimation.AnimRight();
         }
         //左に移動
         if(Input.GetKey(KeyCode.A))
         {
             transform.position -= transform.right * Speed * Time.deltaTime;
+            //アニメーションさせる
+            Playeranimation.AnimLeft();
         }
         //家具が存在するときと、落とし穴の上にいないときに動作
         if (furniture != null && hole==false)
@@ -58,6 +68,9 @@ public class Player : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0, 180, 0);
 
                 transform.position = transform.position;
+
+                //アニメーションさせる
+                Playeranimation.AnimIdle();
 
                 //距離が設定された値より近くて、
                 //プレイヤーのZ座標が家具のZ座標より大きいときに、
