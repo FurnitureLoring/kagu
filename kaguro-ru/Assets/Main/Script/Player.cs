@@ -17,11 +17,14 @@ public class Player : MonoBehaviour
     bool hole;                      //落とし穴判別用
 
     //テスト用
+    GameObject se;
 
     void Start()
     {
         //Animationスクリプトの情報を取得
         Playeranimation = GetComponent<Animation>();
+
+        se = GameObject.Find("SE");
 
         //家具のオブジェクトを取得
         furniture = GameObject.Find("Furniture");
@@ -104,6 +107,7 @@ public class Player : MonoBehaviour
         //Holeタグのオブジェクトに衝突したら地面の下に落ちる
         if (other.gameObject.CompareTag("Hole"))
         {
+            se.GetComponent<SE>().StartSE_Fall();
             this.GetComponent<BoxCollider>().isTrigger = true;
             hole = true;
             StartCoroutine(GameOverWait());
