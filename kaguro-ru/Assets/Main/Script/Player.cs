@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    GameObject furniture;           //家具情報の格納変数
+    GameObject Furniture;           //家具情報の格納変数
     GameObject Goal;                //ゴール情報の格納変数
-    Result result_s;                //リザルトスクリプトの情報格納変数
+    GameObject Se;                  //SE情報の格納変数
+    //Result result_s;                //リザルトスクリプトの情報格納変数
     Animation Playeranimation;      //アニメーションスクリプトの情報格納変数
     public float distance;          //距離
     float possible_distance = 1.5f; //捕獲可能距離
@@ -17,21 +18,20 @@ public class Player : MonoBehaviour
     bool hole;                      //落とし穴判別用
 
     //テスト用
-    GameObject se;
 
     void Start()
     {
         //Animationスクリプトの情報を取得
         Playeranimation = GetComponent<Animation>();
 
-        se = GameObject.Find("SE");
+        Se = GameObject.Find("SE");
 
         //家具のオブジェクトを取得
-        furniture = GameObject.Find("Furniture");
+        Furniture = GameObject.Find("Furniture");
                
         //ゴールの情報を取得・リザルトスクリプトの情報を取得
         Goal = GameObject.Find("Goal");
-        result_s = Goal.GetComponent<Result>();
+        //result_s = Goal.GetComponent<Result>();
 
         hole = false;
     }
@@ -56,10 +56,10 @@ public class Player : MonoBehaviour
             Playeranimation.AnimLeft();
         }
         //家具が存在するときと、落とし穴の上にいないときに動作
-        if (furniture != null && hole==false)
+        if (Furniture != null && hole==false)
         {
             //家具との距離を代入
-            distance = Vector3.Distance(transform.position, furniture.transform.position);
+            distance = Vector3.Distance(transform.position, Furniture.transform.position);
 
             //前向きになる
             transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -78,7 +78,7 @@ public class Player : MonoBehaviour
                 //距離が設定された値より近くて、
                 //プレイヤーのZ座標が家具のZ座標より大きいときに、
                 //捕獲ゲージを増やす
-                if (distance <= possible_distance && transform.position.z >= furniture.transform.position.z)
+                if (distance <= possible_distance && transform.position.z >= Furniture.transform.position.z)
                 {
                     //一秒ごとに+1される
                     gauge += Time.deltaTime;
@@ -107,9 +107,14 @@ public class Player : MonoBehaviour
         //Holeタグのオブジェクトに衝突したら地面の下に落ちる
         if (other.gameObject.CompareTag("Hole"))
         {
-            se.GetComponent<SE>().StartSE_Fall();
+            //落ちた時のSE
+            Se.GetComponent<SE>().StartSE_Fall();
+
+            //地面をすり抜けさせる
             this.GetComponent<BoxCollider>().isTrigger = true;
             hole = true;
+            
+            //GameOverに移動するためのコルーチン
             StartCoroutine(GameOverWait());
         }
     }

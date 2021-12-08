@@ -12,25 +12,25 @@ public class Animation : MonoBehaviour
         Playeranimation = GetComponent<Animator>();
     }
 
-    //左方向に移動するアニメーション
+    //左方向に移動するフラグを設定
     public void AnimLeft()
     {
         Playeranimation.SetBool("left", true);
     }
 
-    //右方向に移動するアニメーション
+    //右方向に移動するフラグを設定
     public void AnimRight()
     {
         Playeranimation.SetBool("right", true);
     }
 
-    //アイドル状態のアニメーション
+    //アイドル状態のフラグを設定
     public void AnimIdle()
     {
         Playeranimation.SetBool("idle", true);
     }
 
-    //アニメーション初期化
+    //アニメーションフラグ初期化
     public void AnimStop()
     {
         Playeranimation.SetBool("right", false);
