@@ -6,11 +6,11 @@ using UnityEngine.UI;
 public class CountDown : MonoBehaviour
 {
 	[SerializeField]
-	private Text _textCountdown;//カウントダウンのテキスト情報をpublicで受け取る
+	private Text _textCountdown;	//カウントダウンのテキスト情報をpublicで受け取る
 	[SerializeField]
-	private Image _imageMask;//Maskとなる画像情報をpublicで受け取る
+	private Image _imageMask;		//Maskとなる画像情報をpublicで受け取る
 
-	SceneTransition scenetrans;//SceneTransitionスクリプトの情報格納変数
+	SceneTransition scenetrans;		//SceneTransitionスクリプトの情報格納変数
 
 	void Start()
 	{

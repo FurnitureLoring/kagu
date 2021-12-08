@@ -7,6 +7,7 @@ TagManager:
   - Obstacle
   - Goal
   - Hole
+  - MoveObstacle
   layers:
   - Default
   - TransparentFX
