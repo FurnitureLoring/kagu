@@ -16,9 +16,10 @@ public class Player : MonoBehaviour
     float Speed = 3.5f;             //移動スピード
     float CaptureSpeed = 3.0f;      //捕獲可能距離内でのスピード
     bool hole;                      //落とし穴判別用
+    bool invert;                    //操作反転用
 
     //テスト用
-    bool invert;//操作反転用
+    bool around;//左右移動判別用
 
     void Start()
     {
@@ -31,17 +32,21 @@ public class Player : MonoBehaviour
         Furniture = GameObject.Find("Furniture");
                
         //ゴールの情報を取得・リザルトスクリプトの情報を取得
-        Goal = GameObject.Find("Goal");
+        //Goal = GameObject.Find("Goal");
         //result_s = Goal.GetComponent<Result>();
 
         hole = false;
 
         invert = false;
+
+        around = false;
     }
 
     void FixedUpdate()
     {
         invert = false;
+
+        around = false;
 
         //アニメーション初期化
         Playeranimation.AnimStop();
@@ -76,15 +81,17 @@ public class Player : MonoBehaviour
                     //一秒ごとに+1される
                     gauge += Time.deltaTime;
                 }
-            }
+            }            
             //前方に移動
             //距離が離れていれば速度が速くなり、近ければ同速になる
-            else if (distance < possible_distance)
+            else if (distance < possible_distance && invert==false)
             {
+                Debug.Log("a");
                 transform.position += transform.forward * CaptureSpeed * Time.deltaTime;
             }
-            else
+            else if(invert==false)
             {
+                Debug.Log("b");
                 transform.position += transform.forward * Speed * Time.deltaTime;
             }
 
@@ -95,6 +102,8 @@ public class Player : MonoBehaviour
                 {
                     transform.position += transform.right * Speed * Time.deltaTime;
 
+                    around = true;
+
                     //アニメーションさせる
                     Playeranimation.AnimRight();
                 }
@@ -102,6 +111,9 @@ public class Player : MonoBehaviour
                 if (Input.GetKey(KeyCode.A))
                 {
                     transform.position -= transform.right * Speed * Time.deltaTime;
+
+                    around = true;
+
                     //アニメーションさせる
                     Playeranimation.AnimLeft();
                 }
@@ -111,7 +123,9 @@ public class Player : MonoBehaviour
                 //右に移動
                 if (Input.GetKey(KeyCode.A))
                 {
-                    transform.position += transform.right * Speed * Time.deltaTime;
+                    transform.position += transform.right * Speed * Time.deltaTime * 0.5f;
+
+                    around = true;
 
                     //アニメーションさせる
                     Playeranimation.AnimRight();
@@ -119,7 +133,10 @@ public class Player : MonoBehaviour
                 //左に移動
                 if (Input.GetKey(KeyCode.D))
                 {
-                    transform.position -= transform.right * Speed * Time.deltaTime;
+                    transform.position -= transform.right * Speed * Time.deltaTime * 0.5f;
+
+                    around = true;
+
                     //アニメーションさせる
                     Playeranimation.AnimLeft();
                 }
