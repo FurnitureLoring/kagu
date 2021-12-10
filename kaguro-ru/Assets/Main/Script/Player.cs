@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     bool hole;                      //落とし穴判別用
 
     //テスト用
+    bool invert;//操作反転用
 
     void Start()
     {
@@ -34,39 +35,31 @@ public class Player : MonoBehaviour
         //result_s = Goal.GetComponent<Result>();
 
         hole = false;
+
+        invert = false;
     }
 
     void FixedUpdate()
     {
+        invert = false;
+
         //アニメーション初期化
         Playeranimation.AnimStop();
 
-        //右に移動
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.position += transform.right * Speed * Time.deltaTime;
-            //アニメーションさせる
-            Playeranimation.AnimRight();
-        }
-        //左に移動
-        if(Input.GetKey(KeyCode.A))
-        {
-            transform.position -= transform.right * Speed * Time.deltaTime;
-            //アニメーションさせる
-            Playeranimation.AnimLeft();
-        }
         //家具が存在するときと、落とし穴の上にいないときに動作
         if (Furniture != null && hole==false)
         {
-            //家具との距離を代入
-            distance = Vector3.Distance(transform.position, Furniture.transform.position);
-
             //前向きになる
             transform.rotation = Quaternion.Euler(0, 0, 0);
+
+            //家具との距離を代入
+            distance = Vector3.Distance(transform.position, Furniture.transform.position);
 
             //その場に停止
             if (Input.GetKey(KeyCode.Space))
             {
+                invert = true;
+
                 //後ろ向きになる
                 transform.rotation = Quaternion.Euler(0, 180, 0);
 
@@ -93,6 +86,43 @@ public class Player : MonoBehaviour
             else
             {
                 transform.position += transform.forward * Speed * Time.deltaTime;
+            }
+
+            if (invert == false)
+            {
+                //右に移動
+                if (Input.GetKey(KeyCode.D))
+                {
+                    transform.position += transform.right * Speed * Time.deltaTime;
+
+                    //アニメーションさせる
+                    Playeranimation.AnimRight();
+                }
+                //左に移動
+                if (Input.GetKey(KeyCode.A))
+                {
+                    transform.position -= transform.right * Speed * Time.deltaTime;
+                    //アニメーションさせる
+                    Playeranimation.AnimLeft();
+                }
+            }
+            else
+            {
+                //右に移動
+                if (Input.GetKey(KeyCode.A))
+                {
+                    transform.position += transform.right * Speed * Time.deltaTime;
+
+                    //アニメーションさせる
+                    Playeranimation.AnimRight();
+                }
+                //左に移動
+                if (Input.GetKey(KeyCode.D))
+                {
+                    transform.position -= transform.right * Speed * Time.deltaTime;
+                    //アニメーションさせる
+                    Playeranimation.AnimLeft();
+                }
             }
         }
     }

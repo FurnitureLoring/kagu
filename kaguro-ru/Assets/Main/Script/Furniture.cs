@@ -22,6 +22,7 @@ public class Furniture : MonoBehaviour
     int position = 0;
 
     //テスト用
+    private float Gauge_HALF = 5;
 
     IEnumerator Start()
     {
