@@ -86,12 +86,10 @@ public class Player : MonoBehaviour
             //‹——£‚ª—£‚ê‚Ä‚¢‚ê‚Î‘¬“x‚ª‘¬‚­‚È‚èA‹ß‚¯‚ê‚Î“¯‘¬‚É‚È‚é
             else if (distance < possible_distance && invert==false)
             {
-                Debug.Log("a");
                 transform.position += transform.forward * CaptureSpeed * Time.deltaTime;
             }
             else if(invert==false)
             {
-                Debug.Log("b");
                 transform.position += transform.forward * Speed * Time.deltaTime;
             }
 
