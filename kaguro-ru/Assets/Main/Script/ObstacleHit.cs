@@ -4,25 +4,27 @@ using UnityEngine;
 
 public class ObstacleHit : MonoBehaviour
 {
-    GameObject Player;
-    Player player_s;
-    bool Hit;//障害物の衝突判定用
+    GameObject Player;  //Player情報の格納変数
+    Player player_s;    //Playerスクリプトの情報格納変数
+    bool Hit;           //障害物の衝突判定用
 
     void Start()
     {
+        //Playerオブジェクト・Playerスクリプトの情報を取得
         Player = GameObject.Find("Player");
         player_s = Player.GetComponent<Player>();
 
+        //衝突判定をfalseで初期化
         Hit = false;
-        Debug.Log("a");
     }
 
     void FixedUpdate()
     {
+        //衝突判定がfalseならプレイヤーの移動が可能
+        //trueならプレイヤーが停止
         if(Hit==false)
         {
             player_s.enabled = true;
-            Debug.Log("a");
         }
         if (Hit == true)
         {
@@ -32,9 +34,9 @@ public class ObstacleHit : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        //障害物に当たると衝突判定がtrueに
         if (other.gameObject.CompareTag("Obstacle"))
         {
-            Debug.Log("a");
             Hit = true;
             StartCoroutine(HitObstacle());   
         }
@@ -45,12 +47,14 @@ public class ObstacleHit : MonoBehaviour
         }
     }
 
+    //障害物に当たった時に動くコルーチン
     IEnumerator HitObstacle()
     {
         yield return new WaitForSeconds(2.0f);
         Hit = false;
     }
 
+    //動く障害物に当たった時に動くコルーチン
     IEnumerator HitMoveObstacle()
     {
         yield return new WaitForSeconds(3.0f);
