@@ -8,14 +8,14 @@ public class Player : MonoBehaviour
     GameObject Furniture;           //家具情報の格納変数
     GameObject Goal;                //ゴール情報の格納変数
     GameObject Se;                  //SE情報の格納変数
-    //Result result_s;                //リザルトスクリプトの情報格納変数
+    GameOverBranch branch;
     Animation Playeranimation;      //アニメーションスクリプトの情報格納変数
     public float distance;          //距離
     float possible_distance = 1.5f; //捕獲可能距離
     public float gauge = 0;         //捕獲ゲージ
     float Speed = 3.5f;             //移動スピード
     float CaptureSpeed = 3.0f;      //捕獲可能距離内でのスピード
-    bool hole;                      //落とし穴判別用
+    public bool hole;               //落とし穴判別用
     bool invert;                    //操作反転用
 
     //テスト用
@@ -30,10 +30,12 @@ public class Player : MonoBehaviour
 
         //家具のオブジェクトを取得
         Furniture = GameObject.Find("Furniture");
-               
+
         //ゴールの情報を取得・リザルトスクリプトの情報を取得
         //Goal = GameObject.Find("Goal");
         //result_s = Goal.GetComponent<Result>();
+
+        branch = GameObject.Find("StageName").GetComponent<GameOverBranch>();
 
         hole = false;
 
@@ -121,22 +123,22 @@ public class Player : MonoBehaviour
                 //右に移動
                 if (Input.GetKey(KeyCode.A))
                 {
-                    transform.position += transform.right * Speed * Time.deltaTime * 0.5f;
+                    transform.position += transform.right * Speed * Time.deltaTime * 0.1f;
 
                     around = true;
 
-                    //アニメーションさせる
-                    Playeranimation.AnimRight();
+                    ////アニメーションさせる
+                    //Playeranimation.AnimRight();
                 }
                 //左に移動
                 if (Input.GetKey(KeyCode.D))
                 {
-                    transform.position -= transform.right * Speed * Time.deltaTime * 0.5f;
+                    transform.position -= transform.right * Speed * Time.deltaTime * 0.1f;
 
                     around = true;
 
-                    //アニメーションさせる
-                    Playeranimation.AnimLeft();
+                    ////アニメーションさせる
+                    //Playeranimation.AnimLeft();
                 }
             }
         }
@@ -158,7 +160,11 @@ public class Player : MonoBehaviour
             //地面をすり抜けさせる
             this.GetComponent<BoxCollider>().isTrigger = true;
             hole = true;
-            
+
+            branch.Hole = true;
+
+            Playeranimation.AnimFall();
+
             //GameOverに移動するためのコルーチン
             StartCoroutine(GameOverWait());
         }
