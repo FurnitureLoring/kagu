@@ -30,6 +30,12 @@ public class Animation : MonoBehaviour
         Playeranimation.SetBool("idle", true);
     }
 
+    //落ちる状態のフラグを設定
+    public void AnimFall()
+    {
+        Playeranimation.SetBool("fall", true);
+    }
+
     //アニメーションフラグ初期化
     public void AnimStop()
     {
