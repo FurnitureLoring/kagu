@@ -8,6 +8,7 @@ TagManager:
   - Goal
   - Hole
   - MoveObstacle
+  - BGM
   layers:
   - Default
   - TransparentFX

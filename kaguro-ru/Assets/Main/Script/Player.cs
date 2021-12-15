@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
 
     //テスト用
     bool around;//左右移動判別用
-
+    bool stop;
     void Start()
     {
         //Animationスクリプトの情報を取得
@@ -42,6 +42,8 @@ public class Player : MonoBehaviour
         invert = false;
 
         around = false;
+
+        stop = false;
     }
 
     void FixedUpdate()
@@ -82,6 +84,17 @@ public class Player : MonoBehaviour
                 {
                     //一秒ごとに+1される
                     gauge += Time.deltaTime;
+                    
+                    //受け止めた時のSEを一度だけ再生
+                    if(stop==false)
+                    {
+                        Se.GetComponent<SE>().StartSE_Stop();
+                        stop = true;
+                    }
+                }
+                else
+                {
+                    stop = false;
                 }
             }            
             //前方に移動

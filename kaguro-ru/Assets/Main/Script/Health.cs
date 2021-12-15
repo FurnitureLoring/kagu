@@ -48,8 +48,8 @@ public class Health : MonoBehaviour
         }
         if(other.gameObject.CompareTag("MoveObstacle")&&Hit==false)
         {
-            hp -= 2;
-            downhp = 2;
+            hp -= 1;
+            downhp = 1;
             Hit = true;
             //もう一度当たるまでのクールタイムを開始
             StartCoroutine(CoolTime());
@@ -72,8 +72,4 @@ public class Health : MonoBehaviour
         yield return new WaitForSeconds(cooltime);
         Hit = false;
     }
-
-    //HPは5しかないのでif分を5つ用意して数字の大きいものから非表示にしていく
-    //障害物に当たった時にカウントが増やされ、増やしたカウントが0になるまで
-    //HPのUIを非表示にする
 }
