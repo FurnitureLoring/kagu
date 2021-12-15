@@ -36,11 +36,19 @@ public class Animation : MonoBehaviour
         Playeranimation.SetBool("fall", true);
     }
 
+    //ダメージを受けた状態のフラグを設定
+    public void AnimDamage()
+    {
+        Playeranimation.SetBool("damage", true);
+    }
+
     //アニメーションフラグ初期化
     public void AnimStop()
     {
         Playeranimation.SetBool("right", false);
         Playeranimation.SetBool("left", false);
         Playeranimation.SetBool("idle", false);
+        Playeranimation.SetBool("damage", false);
+
     }
 }

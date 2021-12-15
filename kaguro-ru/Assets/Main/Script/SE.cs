@@ -9,7 +9,6 @@ public class SE : MonoBehaviour
     public AudioClip StopSE;        //家具を受け止めている時のSE
     public AudioClip CountDownSE;   //カウントダウンSE
     public AudioClip WalkingSE;     //歩いている時のSE
-    public AudioClip JamSE;         //環境音のSE
     public AudioClip FallSE;        //穴に落ちた時のSE
     public AudioClip DamageSE;      //ダメージを受けた時のSE
     public AudioClip GameOverSE;    //ゲームオーバーになった時のSE
@@ -52,7 +51,6 @@ public class SE : MonoBehaviour
     public void StartSE_Stop()
     {
         GetComponent<AudioSource>().PlayOneShot(StopSE);
-
     }
 
     //カウントダウンSE
@@ -67,13 +65,6 @@ public class SE : MonoBehaviour
     public void StartSE_Walking()
     {
         GetComponent<AudioSource>().PlayOneShot(WalkingSE);
-
-    }
-
-    //環境音のSE
-    public void StartSE_Jam()
-    {
-        GetComponent<AudioSource>().PlayOneShot(JamSE);
 
     }
 

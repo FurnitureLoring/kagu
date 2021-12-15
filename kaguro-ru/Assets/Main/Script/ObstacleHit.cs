@@ -6,6 +6,7 @@ public class ObstacleHit : MonoBehaviour
 {
     GameObject Player;  //Player情報の格納変数
     Player player_s;    //Playerスクリプトの情報格納変数
+    Animation Playeranimation;      //アニメーションスクリプトの情報格納変数
     bool Hit;           //障害物の衝突判定用
 
     void Start()
@@ -13,6 +14,9 @@ public class ObstacleHit : MonoBehaviour
         //Playerオブジェクト・Playerスクリプトの情報を取得
         Player = GameObject.Find("Player");
         player_s = Player.GetComponent<Player>();
+
+        //Animationスクリプトの情報を取得
+        Playeranimation = GetComponent<Animation>();
 
         //衝突判定をfalseで初期化
         Hit = false;
@@ -50,6 +54,7 @@ public class ObstacleHit : MonoBehaviour
     //障害物に当たった時に動くコルーチン
     IEnumerator HitObstacle()
     {
+        Playeranimation.AnimDamage();
         yield return new WaitForSeconds(2.0f);
         Hit = false;
     }
@@ -57,7 +62,9 @@ public class ObstacleHit : MonoBehaviour
     //動く障害物に当たった時に動くコルーチン
     IEnumerator HitMoveObstacle()
     {
-        yield return new WaitForSeconds(3.0f);
+        Playeranimation.AnimDamage();
+        yield return new WaitForSeconds(2.0f);
+
         Hit = false;
     }
 }
