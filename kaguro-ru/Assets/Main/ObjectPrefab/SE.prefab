@@ -48,9 +48,8 @@ MonoBehaviour:
   StopSE: {fileID: 8300000, guid: c54abaaa42be64b4a95e8de195e4b2b2, type: 3}
   CountDownSE: {fileID: 8300000, guid: ff62114a5d35c1c488adc17d9a08a578, type: 3}
   WalkingSE: {fileID: 8300000, guid: 67e43b1f578a0934eb3ff3815b5acc7e, type: 3}
-  JamSE: {fileID: 0}
   FallSE: {fileID: 8300000, guid: e7dd175a80e23414388d16bed69f2200, type: 3}
-  DamageSE: {fileID: 0}
+  DamageSE: {fileID: 8300000, guid: df6355eb3aedab54bb247c86427b7edd, type: 3}
   GameOverSE: {fileID: 8300000, guid: a1f2036ffddd80a48b94f60c88c6effa, type: 3}
   ClearSE: {fileID: 8300000, guid: 47d543dcd81696c4f8947ae08b562be3, type: 3}
 --- !u!82 &7147217761554027928
