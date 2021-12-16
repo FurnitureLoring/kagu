@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameOverBranch : MonoBehaviour
 {
-    public bool Hole;//GameOverの時に画像表示の分岐用
+    public bool Hole;   //GameOverの時に画像表示の分岐用
 
     void Start()
     {
@@ -19,7 +19,7 @@ public class GameOverBranch : MonoBehaviour
             //落とし穴に落ちた時のGameOver画面
             if(Hole==true)
             {
-                //UIのimage画像をOFFに切り替える
+                //通常時のGAMEOVERをOFFに切り替える
                 GameObject.Find("GameOver").SetActive(false);
                 
                 Hole = false;

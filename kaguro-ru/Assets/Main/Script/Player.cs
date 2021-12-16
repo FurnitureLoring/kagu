@@ -17,10 +17,8 @@ public class Player : MonoBehaviour
     float CaptureSpeed = 3.0f;      //捕獲可能距離内でのスピード
     public bool hole;               //落とし穴判別用
     bool invert;                    //操作反転用
-
-    //テスト用
-    bool around;//左右移動判別用
     bool stop;
+
     void Start()
     {
         //Animationスクリプトの情報を取得
@@ -41,16 +39,12 @@ public class Player : MonoBehaviour
 
         invert = false;
 
-        around = false;
-
         stop = false;
     }
 
     void FixedUpdate()
     {
         invert = false;
-
-        around = false;
 
         //アニメーション初期化
         Playeranimation.AnimStop();
@@ -115,8 +109,6 @@ public class Player : MonoBehaviour
                 {
                     transform.position += transform.right * Speed * Time.deltaTime;
 
-                    around = true;
-
                     //アニメーションさせる
                     Playeranimation.AnimRight();
                 }
@@ -124,8 +116,6 @@ public class Player : MonoBehaviour
                 if (Input.GetKey(KeyCode.A))
                 {
                     transform.position -= transform.right * Speed * Time.deltaTime;
-
-                    around = true;
 
                     //アニメーションさせる
                     Playeranimation.AnimLeft();
@@ -138,8 +128,6 @@ public class Player : MonoBehaviour
                 {
                     transform.position += transform.right * Speed * Time.deltaTime * 0.1f;
 
-                    around = true;
-
                     ////アニメーションさせる
                     //Playeranimation.AnimRight();
                 }
@@ -147,8 +135,6 @@ public class Player : MonoBehaviour
                 if (Input.GetKey(KeyCode.D))
                 {
                     transform.position -= transform.right * Speed * Time.deltaTime * 0.1f;
-
-                    around = true;
 
                     ////アニメーションさせる
                     //Playeranimation.AnimLeft();

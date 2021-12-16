@@ -5,14 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
-    GameObject Se;                  //SE情報の格納変数
+    GameObject Se;           //SE情報の格納変数
     public int hp;          //主人公のHP
     public bool Hit;        //衝突したか判定用
     public float cooltime;  //クールタイム
-
-    //テスト
     GameObject[] heart = new GameObject[5]; //HP配列
-    public int downhp;                             //HPの減少量
+    public int downhp;                      //HPの減少量
 
     void Start()
     {

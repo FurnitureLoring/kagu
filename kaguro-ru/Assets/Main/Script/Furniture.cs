@@ -21,9 +21,6 @@ public class Furniture : MonoBehaviour
     Vector3[] positions = new Vector3[pathMax]; //座標リスト
     int position = 0;
 
-    //テスト用
-    private float Gauge_HALF = 5;
-
     IEnumerator Start()
     {
         //プレイヤーの情報を取得・プレイヤースクリプトの情報を取得
