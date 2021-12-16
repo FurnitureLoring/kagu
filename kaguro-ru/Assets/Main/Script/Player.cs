@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     GameOverBranch branch;
     Animation Playeranimation;      //アニメーションスクリプトの情報格納変数
     public float distance;          //距離
-    float possible_distance = 1.5f; //捕獲可能距離
+    float possible_distance = 1.0f; //捕獲可能距離
     public float gauge = 0;         //捕獲ゲージ
     float Speed = 3.5f;             //移動スピード
     float CaptureSpeed = 3.0f;      //捕獲可能距離内でのスピード
