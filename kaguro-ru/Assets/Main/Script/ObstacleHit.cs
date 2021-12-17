@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class ObstacleHit : MonoBehaviour
 {
-    GameObject Player;              //Player情報の格納変数
-    Player player_s;                //Playerスクリプトの情報格納変数
-    Animation Playeranimation;      //アニメーションスクリプトの情報格納変数
+    Player Player;                  //Player情報の格納変数
+    Animation Playeranimation;      //Animation情報の格納変数
     bool Hit;                       //障害物の衝突判定用
 
     void Start()
     {
         //Playerオブジェクト・Playerスクリプトの情報を取得
-        Player = GameObject.Find("Player");
-        player_s = Player.GetComponent<Player>();
+        Player = GameObject.Find("Player").GetComponent<Player>();
 
         //Animationスクリプトの情報を取得
         Playeranimation = GetComponent<Animation>();
@@ -28,11 +26,11 @@ public class ObstacleHit : MonoBehaviour
         //trueならプレイヤーが停止
         if(Hit==false)
         {
-            player_s.enabled = true;
+            Player.enabled = true;
         }
         if (Hit == true)
         {
-            player_s.enabled = false;
+            Player.enabled = false;
         }
     }
 

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MoveObstacle : MonoBehaviour
 {
-    private float time; //“®‚«o‚·‚Ü‚Å‚ÌŠÔŠÔŠu
-    private bool isMove;//“®‚¢‚Ä‚¢‚é‚©‚ğ”»•Ê
+    private float time;     //“®‚«o‚·‚Ü‚Å‚ÌŠÔŠÔŠu
+    private bool isMove;    //“®‚¢‚Ä‚¢‚é‚©‚ğ”»•Ê
 
     void FixedUpdate()
     {

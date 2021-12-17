@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class StageSelect : MonoBehaviour
 {
-    private float RotateSpeed;
+    private float RotateSpeed = 0.5f;  //‰ñ“]‘¬“x
 
     void Start()
     {
-        RotateSpeed = 0.5f;
+
     }
 
     void FixedUpdate()
     {
+        //©g‚ğ‰ñ“]‚³‚¹‚é
         this.transform.Rotate(0.0f, RotateSpeed, 0.0f);
     }
 }

@@ -16,9 +16,6 @@ public class SE : MonoBehaviour
 
     bool SEflg;                     //音が何度もならないようにフラグで管理
 
-
-    //テスト
-
     void Start()
     {
         SEflg = false;

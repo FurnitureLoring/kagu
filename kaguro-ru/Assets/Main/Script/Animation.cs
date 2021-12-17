@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Animation : MonoBehaviour
 {
-    Animator Playeranimation;//ƒAƒjƒ[ƒVƒ‡ƒ“î•ñŠi”[•Ï”
+    Animator Playeranimation;//Animatorî•ñ‚ÌŠi”[•Ï”
 
     private void Start()
     {

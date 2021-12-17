@@ -5,11 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    GameObject Furniture;           //家具情報の格納変数
-    GameObject Goal;                //ゴール情報の格納変数
-    GameObject Se;                  //SE情報の格納変数
-    GameOverBranch branch;
-    Animation Playeranimation;      //アニメーションスクリプトの情報格納変数
+    GameObject Furniture;           //Furniture情報の格納変数
+    SE Se;                          //SE情報の格納変数
+    GameOverBranch branch;          //GameOverBranch情報の格納変数        
+    Animation Playeranimation;      //Animation情報の格納変数
     public float distance;          //距離
     float possible_distance = 1.0f; //捕獲可能距離
     public float gauge = 0;         //捕獲ゲージ
@@ -17,33 +16,31 @@ public class Player : MonoBehaviour
     float CaptureSpeed = 3.0f;      //捕獲可能距離内でのスピード
     public bool hole;               //落とし穴判別用
     bool invert;                    //操作反転用
-    bool stop;
+    bool stop;                      //音が何度もならないようにフラグで管理
 
     void Start()
     {
         //Animationスクリプトの情報を取得
         Playeranimation = GetComponent<Animation>();
 
-        Se = GameObject.Find("SE");
+        //SEの情報を取得
+        Se = GameObject.Find("SE").GetComponent<SE>();
 
         //家具のオブジェクトを取得
         Furniture = GameObject.Find("Furniture");
 
-        //ゴールの情報を取得・リザルトスクリプトの情報を取得
-        //Goal = GameObject.Find("Goal");
-        //result_s = Goal.GetComponent<Result>();
-
+        //GameOverBranchの情報を取得
         branch = GameObject.Find("StageName").GetComponent<GameOverBranch>();
 
+        //フラグの初期化
         hole = false;
-
         invert = false;
-
         stop = false;
     }
 
     void FixedUpdate()
     {
+        //フラグの初期化
         invert = false;
 
         //アニメーション初期化
@@ -82,7 +79,7 @@ public class Player : MonoBehaviour
                     //受け止めた時のSEを一度だけ再生
                     if(stop==false)
                     {
-                        Se.GetComponent<SE>().StartSE_Stop();
+                        Se.StartSE_Stop();
                         stop = true;
                     }
                 }
@@ -109,7 +106,7 @@ public class Player : MonoBehaviour
                 {
                     transform.position += transform.right * Speed * Time.deltaTime;
 
-                    //アニメーションさせる
+                    //アニメーション再生
                     Playeranimation.AnimRight();
                 }
                 //左に移動
@@ -117,7 +114,7 @@ public class Player : MonoBehaviour
                 {
                     transform.position -= transform.right * Speed * Time.deltaTime;
 
-                    //アニメーションさせる
+                    //アニメーション再生
                     Playeranimation.AnimLeft();
                 }
             }
@@ -148,14 +145,16 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Hole"))
         {
             //落ちた時のSE
-            Se.GetComponent<SE>().StartSE_Fall();
+            Se.StartSE_Fall();
 
             //地面をすり抜けさせる
             this.GetComponent<BoxCollider>().isTrigger = true;
             hole = true;
 
+            //GameOverBranchのフラグをtrueにする
             branch.Hole = true;
 
+            //落ちるアニメーションを再生
             Playeranimation.AnimFall();
 
             //GameOverに移動するためのコルーチン

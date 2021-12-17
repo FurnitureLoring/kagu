@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Title : MonoBehaviour
 {
-    float Speed = 3.5f;             //移動スピード
+    private float Speed = 3.5f;             //移動スピード
 
     void FixedUpdate()
     {

@@ -5,12 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
-    GameObject Se;           //SE情報の格納変数
-    private int hp;          //主人公のHP
-    private bool Hit;        //衝突したか判定用
-    private float cooltime;  //クールタイム
-    GameObject[] heart = new GameObject[5]; //HP配列
-    private int downhp;                      //HPの減少量
+    SE Se;                                  //SE情報の格納変数
+    GameObject[] heart = new GameObject[5]; //HPオブジェクト配列
+    private int hp;                         //主人公のHP
+    private bool Hit;                       //衝突したか判定用
+    private float cooltime;                 //クールタイム
+    private int downhp;                     //HPの減少量
 
     void Start()
     {
@@ -18,13 +18,15 @@ public class Health : MonoBehaviour
         hp = 5;
         cooltime = 2.0f;
 
+        //HPオブジェクトの情報を取得
         heart[0] = GameObject.Find("Heart0");
         heart[1] = GameObject.Find("Heart1");
         heart[2] = GameObject.Find("Heart2");
         heart[3] = GameObject.Find("Heart3");
         heart[4] = GameObject.Find("Heart4");
 
-        Se = GameObject.Find("SE");
+        //SEの情報を取得
+        Se = GameObject.Find("SE").GetComponent<SE>();
     }
 
     void FixedUpdate()
@@ -45,7 +47,7 @@ public class Health : MonoBehaviour
             downhp = 1;
             Hit = true;
 
-            Se.GetComponent<SE>().StartSE_Damage();
+            Se.StartSE_Damage();
 
             //もう一度当たるまでのクールタイムを開始
             StartCoroutine(CoolTime());
@@ -57,7 +59,7 @@ public class Health : MonoBehaviour
             Hit = true;
 
             //ダメージSEを鳴らす
-            Se.GetComponent<SE>().StartSE_Damage();
+            Se.StartSE_Damage();
 
             //もう一度当たるまでのクールタイムを開始
             StartCoroutine(CoolTime());

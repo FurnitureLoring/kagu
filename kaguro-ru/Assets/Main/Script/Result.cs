@@ -5,14 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class Result : MonoBehaviour
 {
-    GameObject furniture;   //家具情報の格納変数
-    GameObject Player;      //プレイヤー情報の格納変数
-    public bool result;     //リザルトフラグ    false:クリア   true:ゲームオーバー
+    GameObject Furniture;   //Furniture情報の格納変数
+    GameObject Player;      //Player情報の格納変数
+    public bool result;     //リザルトフラグ
+                            //false:クリア   true:ゲームオーバー
 
     void Start()
     {
         //家具の情報を取得
-        furniture = GameObject.Find("Furniture");        
+        Furniture = GameObject.Find("Furniture");        
         //プレイヤーの情報を取得
         Player = GameObject.Find("Player");
 
@@ -21,7 +22,7 @@ public class Result : MonoBehaviour
     void FixedUpdate()
     {
         //家具かプレイヤーがnullなら動作
-        if (furniture == null || Player == null)
+        if (Furniture == null || Player == null)
         {
             //resultがfalseならクリアに、trueならゲームオーバーに移動
             if (result == false)
