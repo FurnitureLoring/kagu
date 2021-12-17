@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ObstacleHit : MonoBehaviour
 {
-    GameObject Player;  //Player情報の格納変数
-    Player player_s;    //Playerスクリプトの情報格納変数
+    GameObject Player;              //Player情報の格納変数
+    Player player_s;                //Playerスクリプトの情報格納変数
     Animation Playeranimation;      //アニメーションスクリプトの情報格納変数
-    bool Hit;           //障害物の衝突判定用
+    bool Hit;                       //障害物の衝突判定用
 
     void Start()
     {
@@ -47,7 +47,7 @@ public class ObstacleHit : MonoBehaviour
         if(other.gameObject.CompareTag("MoveObstacle"))
         {
             Hit = true;
-            StartCoroutine(HitMoveObstacle());
+            StartCoroutine(HitObstacle());
         }
     }
 
@@ -56,15 +56,6 @@ public class ObstacleHit : MonoBehaviour
     {
         Playeranimation.AnimDamage();
         yield return new WaitForSeconds(2.0f);
-        Hit = false;
-    }
-
-    //動く障害物に当たった時に動くコルーチン
-    IEnumerator HitMoveObstacle()
-    {
-        Playeranimation.AnimDamage();
-        yield return new WaitForSeconds(2.0f);
-
         Hit = false;
     }
 }

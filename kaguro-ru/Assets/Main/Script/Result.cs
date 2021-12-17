@@ -20,7 +20,7 @@ public class Result : MonoBehaviour
 
     void FixedUpdate()
     {
-        //家具がnullなら動作
+        //家具かプレイヤーがnullなら動作
         if (furniture == null || Player == null)
         {
             //resultがfalseならクリアに、trueならゲームオーバーに移動
