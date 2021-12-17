@@ -127,17 +127,11 @@ public class Player : MonoBehaviour
                 if (Input.GetKey(KeyCode.A))
                 {
                     transform.position += transform.right * Speed * Time.deltaTime * 0.1f;
-
-                    ////アニメーションさせる
-                    //Playeranimation.AnimRight();
                 }
                 //左に移動
                 if (Input.GetKey(KeyCode.D))
                 {
                     transform.position -= transform.right * Speed * Time.deltaTime * 0.1f;
-
-                    ////アニメーションさせる
-                    //Playeranimation.AnimLeft();
                 }
             }
         }
