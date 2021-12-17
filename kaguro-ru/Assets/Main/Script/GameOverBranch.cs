@@ -14,6 +14,7 @@ public class GameOverBranch : MonoBehaviour
 
     void FixedUpdate()
     {
+        //Scene‚ªGameOver‚È‚ç“®‚­
         if ("GameOver"==SceneManager.GetActiveScene().name)
         {
             //—Ž‚Æ‚µŒŠ‚É—Ž‚¿‚½Žž‚ÌGameOver‰æ–Ê

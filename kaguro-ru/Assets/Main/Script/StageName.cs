@@ -13,6 +13,5 @@ public class StageName : MonoBehaviour
         DontDestroyOnLoad(this);
         //Scene–¼‚ðŽæ“¾
         Stage = SceneManager.GetActiveScene().name;
-
     }
 }
