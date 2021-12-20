@@ -10,7 +10,7 @@ public class CountDown : MonoBehaviour
 	[SerializeField]
 	private Image _imageMask;		//Maskとなる画像情報をpublicで受け取る
 
-	SceneTransition scenetrans;		//SceneTransitionスクリプトの情報格納変数
+	SceneTransition scenetrans;     //SceneTransitionスクリプトの情報格納変数
 
 	void Start()
 	{
@@ -20,23 +20,17 @@ public class CountDown : MonoBehaviour
 		scenetrans = GetComponent<SceneTransition>();
 	}
 
-	public void Stage1()
-	{
-		StartCoroutine(CountdownCoroutine1());
-	}
-
-	public void Stage2()
+	//カウントダウンが始まりステージが始まる
+	//string Stage	：始めたいステージ名
+	public void StageStart(string Stage)
     {
-		StartCoroutine(CountdownCoroutine2());
-	}
+		StartCoroutine(CountDownStart(Stage));
+    }
 
-	public void Stage3()
-	{
-		StartCoroutine(CountdownCoroutine3());
-	}
-
-	IEnumerator CountdownCoroutine()
-	{
+	//カウントダウンコルーチン
+	//string Stage	：始めたいステージ名
+	IEnumerator CountDownStart(string Stage)
+    {
 		_imageMask.gameObject.SetActive(true);
 		_textCountdown.gameObject.SetActive(true);
 
@@ -52,90 +46,18 @@ public class CountDown : MonoBehaviour
 		_textCountdown.text = "GO!";
 		yield return new WaitForSeconds(1.0f);
 
-        if ("Stage1" == GameObject.Find("Stage1").name)
+		if(Stage=="Stage1")
         {
 			scenetrans.StageStart1();
         }
-        if ("Stage2" == GameObject.Find("Stage2").name)
+		if(Stage=="Stage2")
         {
 			scenetrans.StageStart2();
         }
-		if ("Stage3" == GameObject.Find("Stage3").name)
-		{
+		if(Stage=="Stage3")
+        {
 			scenetrans.StageStart3();
-		}
-
-		_textCountdown.text = "";
-		_textCountdown.gameObject.SetActive(false);
-		_imageMask.gameObject.SetActive(false);
-	}
-
-	IEnumerator CountdownCoroutine1()
-	{
-		_imageMask.gameObject.SetActive(true);
-		_textCountdown.gameObject.SetActive(true);
-
-		_textCountdown.text = "3";
-		yield return new WaitForSeconds(1.0f);
-
-		_textCountdown.text = "2";
-		yield return new WaitForSeconds(1.0f);
-
-		_textCountdown.text = "1";
-		yield return new WaitForSeconds(1.0f);
-
-		_textCountdown.text = "GO!";
-		yield return new WaitForSeconds(1.0f);
-
-		scenetrans.StageStart1();
-
-		_textCountdown.text = "";
-		_textCountdown.gameObject.SetActive(false);
-		_imageMask.gameObject.SetActive(false);
-	}
-
-	IEnumerator CountdownCoroutine2()
-	{
-		_imageMask.gameObject.SetActive(true);
-		_textCountdown.gameObject.SetActive(true);
-
-		_textCountdown.text = "3";
-		yield return new WaitForSeconds(1.0f);
-
-		_textCountdown.text = "2";
-		yield return new WaitForSeconds(1.0f);
-
-		_textCountdown.text = "1";
-		yield return new WaitForSeconds(1.0f);
-
-		_textCountdown.text = "GO!";
-		yield return new WaitForSeconds(1.0f);
-
-		scenetrans.StageStart2();
-
-		_textCountdown.text = "";
-		_textCountdown.gameObject.SetActive(false);
-		_imageMask.gameObject.SetActive(false);
-	}
-
-	IEnumerator CountdownCoroutine3()
-	{
-		_imageMask.gameObject.SetActive(true);
-		_textCountdown.gameObject.SetActive(true);
-
-		_textCountdown.text = "3";
-		yield return new WaitForSeconds(1.0f);
-
-		_textCountdown.text = "2";
-		yield return new WaitForSeconds(1.0f);
-
-		_textCountdown.text = "1";
-		yield return new WaitForSeconds(1.0f);
-
-		_textCountdown.text = "GO!";
-		yield return new WaitForSeconds(1.0f);
-
-		scenetrans.StageStart3();
+        }
 
 		_textCountdown.text = "";
 		_textCountdown.gameObject.SetActive(false);
