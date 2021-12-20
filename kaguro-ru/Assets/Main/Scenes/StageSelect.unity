@@ -2636,6 +2636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e0824be836d05743be1e3f13f7e93c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Camera: {fileID: 1794747422}
 --- !u!1 &1507132178
 GameObject:
   m_ObjectHideFlags: 0
@@ -2798,8 +2799,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1315225573}
-        m_TargetAssemblyTypeName: StageSelectPanel, Assembly-CSharp
-        m_MethodName: PanelBack
+        m_TargetAssemblyTypeName: StageSelect, Assembly-CSharp
+        m_MethodName: Back
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3106,8 +3107,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1315225573}
-        m_TargetAssemblyTypeName: StageSelectPanel, Assembly-CSharp
-        m_MethodName: PanelForward
+        m_TargetAssemblyTypeName: StageSelect, Assembly-CSharp
+        m_MethodName: Forward
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
