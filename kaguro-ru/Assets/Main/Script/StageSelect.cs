@@ -19,8 +19,9 @@ public class StageSelect : MonoBehaviour
     public void Back()
     {
         //StageSelectパネルが端を超えて移動しないように制御
-        if (Panel[1].transform.localPosition == new Vector3(0.0f, 0.0f, 0.0f)||
-            Panel[2].transform.localPosition == new Vector3(0.0f, 0.0f, 0.0f))
+        if (Panel[1].transform.localPosition == new Vector3(0.0f, 0.0f, 0.0f)
+            //||Panel[2].transform.localPosition == new Vector3(0.0f, 0.0f, 0.0f)
+            )
         {
             for (int i = 0; i < 3; i++)
             {
@@ -33,8 +34,9 @@ public class StageSelect : MonoBehaviour
     public void Forward()
     {
         //StageSelectパネルが端を超えて移動しないように制御
-        if (Panel[0].transform.localPosition == new Vector3(0.0f, 0.0f, 0.0f)||
-            Panel[1].transform.localPosition == new Vector3(0.0f, 0.0f, 0.0f))
+        if (Panel[0].transform.localPosition == new Vector3(0.0f, 0.0f, 0.0f)
+            //||Panel[1].transform.localPosition == new Vector3(0.0f, 0.0f, 0.0f)
+            )
         {
             for (int i = 0; i < 3; i++)
             {
