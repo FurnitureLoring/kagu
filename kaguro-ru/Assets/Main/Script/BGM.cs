@@ -34,6 +34,18 @@ public class BGM : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        if ("Stage4" == SceneManager.GetActiveScene().name)
+        {
+            Destroy(this.gameObject);
+        }
+        if ("Stage5" == SceneManager.GetActiveScene().name)
+        {
+            Destroy(this.gameObject);
+        }
+        if ("Stage6" == SceneManager.GetActiveScene().name)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     //BGMがフェードアウトしていく

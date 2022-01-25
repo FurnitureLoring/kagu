@@ -58,6 +58,18 @@ public class CountDown : MonoBehaviour
         {
 			scenetrans.StageStart3();
         }
+		if (Stage == "Stage4")
+		{
+			scenetrans.StageStart4();
+		}
+		if (Stage == "Stage5")
+		{
+			scenetrans.StageStart5();
+		}
+		if (Stage == "Stage6")
+		{
+			scenetrans.StageStart6();
+		}
 
 		_textCountdown.text = "";
 		_textCountdown.gameObject.SetActive(false);

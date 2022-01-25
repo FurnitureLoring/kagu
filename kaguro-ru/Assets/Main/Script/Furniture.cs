@@ -15,7 +15,7 @@ public class Furniture : MonoBehaviour
     private float Gauge;            //捕獲ゲージ
     private float Gauge_MAX = 10;   //捕獲ゲージMAX
     float Speed = 2.5f;             //移動スピード
-    const int pathMax = 9;                      //パスの最大登録数
+    const int pathMax = 20;                      //パスの最大登録数
     Vector3[] positions = new Vector3[pathMax]; //座標リスト
     int position = 0;
 

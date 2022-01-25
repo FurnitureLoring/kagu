@@ -59,6 +59,19 @@ public class SceneTransition : MonoBehaviour
         SceneManager.LoadScene("Stage4");
     }
 
+    //ステージ5に移動
+    public void StageStart5()
+    {
+        SceneManager.LoadScene("Stage5");
+    }
+
+    //ステージ6に移動
+    public void StageStart6()
+    {
+        SceneManager.LoadScene("Stage6");
+    }
+
+
     //リトライ機能
     public void Retry()
     {
@@ -78,6 +91,14 @@ public class SceneTransition : MonoBehaviour
                 break;
             case "Stage4":  //ステージ４
                 SceneManager.LoadScene("Stage4");
+                Destroy(StageName); //オブジェクトを破棄
+                break;
+            case "Stage5":  //ステージ５
+                SceneManager.LoadScene("Stage5");
+                Destroy(StageName); //オブジェクトを破棄
+                break;
+            case "Stage6":  //ステージ６
+                SceneManager.LoadScene("Stage6");
                 Destroy(StageName); //オブジェクトを破棄
                 break;
         }
